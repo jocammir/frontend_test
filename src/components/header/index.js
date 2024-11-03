@@ -5,7 +5,7 @@ import GitHubIcon from "@mui/icons-material/GitHub";
 import ShoppingCart from "@mui/icons-material/ShoppingCart";
 import style from "./style.css";
 
-const Header = () => (
+const Header = ({ cartCount }) => (
   <AppBar position="fixed">
     <Toolbar>
       <Link href="/">
@@ -28,7 +28,7 @@ const Header = () => (
         color="inherit"
         title="Cart"
       >
-        <Badge badgeContent={1} color="secondary">
+        <Badge badgeContent={cartCount} color="secondary">
           <ShoppingCart />
         </Badge>
       </IconButton>

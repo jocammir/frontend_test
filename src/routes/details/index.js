@@ -12,18 +12,28 @@ import { Container, Divider, Grid2, Typography } from "@mui/material";
 import ProductDetailImage from "../../components/products/detail-image";
 import ProductDetailDescription from "../../components/products/detail-description";
 import ProductDetailActions from "../../components/products/detail-actions";
+import { FetchersSliceCart } from "../../store/slices/cart";
 
 const Details = ({ id }) => {
   const dispatch = useDispatch();
   const product = useSelector(SelectorSliceProducts.productDetails);
 
   const handleAddToCart = (product) => {
-    console.log(product, id); // TODO
+    if (!id || !product) return;
+
+    dispatch(
+      FetchersSliceCart.getCart({
+        id,
+        colorCode: product.colors,
+        storageCode: product.storages,
+      }),
+    );
+    route("/");
   };
 
   // Fetch product details
   useEffect(() => {
-    if (!id) return route(`/`);
+    if (!id) return route("/");
     dispatch(FetchersSliceProducts.getProductDetails(id));
   }, [dispatch, id]);
 
