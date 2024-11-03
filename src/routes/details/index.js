@@ -1,15 +1,38 @@
 import { h } from "preact";
-import { PRODUCT } from "../../../tests/product"; // TODO: delete mock data
+import { useEffect } from "preact/hooks";
+import { route } from "preact-router";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  ActionsSliceProducts,
+  FetchersSliceProducts,
+  SelectorSliceProducts,
+} from "../../store/slices/products";
+
 import { Container, Divider, Grid2, Typography } from "@mui/material";
 import ProductDetailImage from "../../components/products/detail-image";
 import ProductDetailDescription from "../../components/products/detail-description";
 import ProductDetailActions from "../../components/products/detail-actions";
 
 const Details = ({ id }) => {
-  const product = PRODUCT;
+  const dispatch = useDispatch();
+  const product = useSelector(SelectorSliceProducts.productDetails);
+
   const handleAddToCart = (product) => {
     console.log(product, id); // TODO
   };
+
+  // Fetch product details
+  useEffect(() => {
+    if (!id) return route(`/`);
+    dispatch(FetchersSliceProducts.getProductDetails(id));
+  }, [dispatch, id]);
+
+  // Clean store data
+  useEffect(() => {
+    return () => {
+      dispatch(ActionsSliceProducts.cleanProductDetails());
+    };
+  }, [dispatch]);
 
   return (
     <Container component="section">

@@ -1,5 +1,5 @@
 import { h } from "preact";
-import { useState } from "preact/hooks";
+import { useEffect, useState } from "preact/hooks";
 import {
   Box,
   Typography,
@@ -10,14 +10,8 @@ import {
 } from "@mui/material";
 import { EMPTY_STRING } from "../../../utils/constants";
 
-const ProductDetailActions = ({ options, onAdd }) => {
-  const optionEntries = Object.entries(options);
-  const defaultOptions = optionEntries.reduce(
-    (acc, [key, values]) => ({ ...acc, [key]: values[0]?.code }),
-    {},
-  );
-
-  const [selectedOptions, setSelectedOptions] = useState(defaultOptions);
+const ProductDetailActions = ({ options = {}, onAdd }) => {
+  const [selectedOptions, setSelectedOptions] = useState({});
 
   const handleAdd = () => {
     if (onAdd) onAdd(selectedOptions);
@@ -30,6 +24,16 @@ const ProductDetailActions = ({ options, onAdd }) => {
     }));
   };
 
+  // Set default options
+  useEffect(() => {
+    setSelectedOptions(
+      Object.entries(options).reduce(
+        (acc, [key, values]) => ({ ...acc, [key]: values[0]?.code }),
+        {},
+      ),
+    );
+  }, [options]);
+
   return (
     <Grid2 container>
       <Grid2 item size={12}>
@@ -40,7 +44,7 @@ const ProductDetailActions = ({ options, onAdd }) => {
           gap={2}
           mb={4}
         >
-          {optionEntries.map(([optionType, values]) => (
+          {Object.entries(options).map(([optionType, values]) => (
             <Box key={optionType}>
               <Typography
                 color="primary"

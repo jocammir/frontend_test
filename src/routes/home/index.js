@@ -1,22 +1,35 @@
 import { h } from "preact";
-import { useState } from "preact/hooks";
+import { useEffect, useState } from "preact/hooks";
 import { route } from "preact-router";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  FetchersSliceProducts,
+  SelectorSliceProducts,
+} from "../../store/slices/products";
+
 import { Container, Grid2 } from "@mui/material";
 import { filterProducts } from "../../utils/filterProducts";
 import { EMPTY_STRING, GRID_SIZES } from "../../utils/constants";
+
 import ProductListItem from "../../components/products/list-item";
 import SearchField from "../../components/search-field";
 
-import { PRODUCTS } from "../../../tests/products"; //TODO: delete mock data
 import style from "./style.css";
 
 const Home = () => {
+  const dispatch = useDispatch();
+  const productList = useSelector(SelectorSliceProducts.productList);
   const [searchTerm, setSearchTerm] = useState(EMPTY_STRING);
-  const filteredItems = filterProducts(PRODUCTS, searchTerm);
+  const filteredItems = filterProducts(productList, searchTerm);
 
   const handleCardClick = (id) => {
     route(`/details/${id}`);
   };
+
+  // Fetch product list
+  useEffect(() => {
+    dispatch(FetchersSliceProducts.getProductList());
+  }, [dispatch]);
 
   return (
     <Container component="section" className={style.home}>

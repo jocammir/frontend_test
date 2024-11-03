@@ -7,6 +7,7 @@
  *                   If no search term is provided, the complete list is returned.
  */
 export const filterProducts = (items, searchTerm) => {
+  if (!items) return [];
   if (!searchTerm) return items;
 
   return items.filter(

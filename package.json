@@ -41,10 +41,13 @@
     "@emotion/styled": "^11.13.0",
     "@mui/icons-material": "^6.1.6",
     "@mui/material": "^6.1.6",
+    "@reduxjs/toolkit": "^2.3.0",
     "clsx": "^2.1.1",
     "preact": "^10.11.3",
     "preact-render-to-string": "^5.2.6",
-    "preact-router": "^3.2.1"
+    "preact-router": "^3.2.1",
+    "react-redux": "^9.1.2",
+    "redux": "^5.0.1"
   },
   "jest": {
     "preset": "jest-preset-preact",
