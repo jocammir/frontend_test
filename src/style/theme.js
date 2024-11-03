@@ -44,6 +44,29 @@ const theme = createTheme({
         },
       },
     },
+    MuiAppBar: {
+      styleOverrides: {
+        root: {
+          boxShadow: "none",
+        },
+      },
+    },
+    MuiToolbar: {
+      styleOverrides: {
+        root: {
+          boxShadow: "var(--Paper-shadow)",
+          variants: [
+            {
+              props: { variant: "breadcrumb" },
+              style: {
+                backgroundColor: "#fafafa",
+                boxShadow: "none",
+              },
+            },
+          ],
+        },
+      },
+    },
   },
 });
 
