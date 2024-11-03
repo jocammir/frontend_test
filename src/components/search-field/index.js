@@ -47,32 +47,32 @@ const SearchField = ({
       <SearchIcon titleAccess="Search Icon" className={styles.icon} />
       <Box display="flex" flexDirection="column" justify="center">
         {label && (
-            <Typography
-                className={clsx(
-                    styles["input-label"],
-                    {
-                      [styles["input-label-active"]]: isFilled || isFocused,
-                    },
-                    {[styles["input-label-disabled"]]: disabled},
-                )}
-                htmlFor={id}
-                component="label"
-            >
-              {label}
-            </Typography>
+          <Typography
+            className={clsx(
+              styles["input-label"],
+              {
+                [styles["input-label-active"]]: isFilled || isFocused,
+              },
+              { [styles["input-label-disabled"]]: disabled },
+            )}
+            htmlFor={id}
+            component="label"
+          >
+            {label}
+          </Typography>
         )}
         <input
-            ref={ref}
-            autoComplete="off"
-            className={clsx(styles.input)}
-            disabled={disabled}
-            defaultValue={defaultValue}
-            id={id}
-            type="text"
-            onBlur={handleBlur}
-            onFocus={handleFocus}
-            value={value}
-            {...props}
+          ref={ref}
+          autoComplete="off"
+          className={clsx(styles.input)}
+          disabled={disabled}
+          defaultValue={defaultValue}
+          id={id}
+          type="text"
+          onBlur={handleBlur}
+          onFocus={handleFocus}
+          value={value}
+          {...props}
         />
       </Box>
     </Box>

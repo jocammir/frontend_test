@@ -1,0 +1,13 @@
+
+.card-img {
+    height: 35rem;
+    margin: 0 auto;
+    padding: 1rem 0;
+    width: auto;
+}
+
+@media (max-width: 639px) {
+    .card-img {
+        height: 15rem;
+    }
+}
