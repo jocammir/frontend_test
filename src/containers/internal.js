@@ -1,9 +1,10 @@
 import { h } from "preact";
 import { Router } from "preact-router";
 import { Box } from "@mui/material";
-import { useSelector } from "react-redux";
-import { useState } from "preact/hooks";
-import { SelectorSliceCart } from "../store/slices/cart";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect, useState } from "preact/hooks";
+import { FetchersSliceCart, SelectorSliceCart } from "../store/slices/cart";
+import { revalidationCart } from "../store/api/cart";
 
 import Header from "../components/header";
 import Home from "../routes/home";
@@ -38,16 +39,26 @@ const ROUTES = [
 ];
 
 const InternalContainer = () => {
+  const dispatch = useDispatch();
   const [routeProps, setRouteProps] = useState({});
-  const cart = useSelector(SelectorSliceCart.cart);
+  const cartCount = useSelector(SelectorSliceCart.cartCount);
 
   const handleRouteChange = ({ current }) => {
     setRouteProps(current?.props);
   };
 
+  // Revalidate cart store
+  useEffect(() => {
+    const cartParams = revalidationCart();
+
+    if (cartParams) {
+      dispatch(FetchersSliceCart.getCart(cartParams));
+    }
+  }, [dispatch]);
+
   return (
     <>
-      <Header cartCount={cart.count} routeProps={routeProps} />
+      <Header cartCount={cartCount} routeProps={routeProps} />
       <Box as="main">
         <Router onChange={handleRouteChange}>
           {ROUTES?.map(({ Component, ...routeProps }, index) => (
