@@ -1,0 +1,75 @@
+.root {
+    font-family: Roboto, Helvetica, Arial, sans-serif;
+    border-radius: 2.5rem;
+    padding: 0.5rem 1rem;
+    background-color: #e0e0e0;
+    border-color: #CCD3D3;
+    position: relative;
+    appearance: none;
+    box-sizing: border-box;
+    cursor: text;
+    vertical-align: top;
+}
+
+.root.disabled {
+    background-color: #FAFBFB;
+}
+
+.icon {
+    color: #757575;
+}
+
+.input {
+    background-color: inherit;
+    box-sizing: border-box;
+    box-shadow: none;
+    border: 0;
+    flex-grow: 1;
+    font-size: 1rem;
+    height: 2rem;
+    max-width: 100%;
+    padding: 0 0.5rem;
+    outline: none;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 100%;
+}
+
+.input::placeholder,
+.input::-ms-input-placeholder,
+.input:-ms-input-placeholder {
+    color: transparent;
+}
+
+.input:focus::placeholder {
+    font-size: 0.875rem;
+    color: #CCD3D3;
+    opacity: 1;
+}
+
+.input:focus::-ms-input-placeholder {
+    font-size: 0.875rem;
+    color: #CCD3D3;
+}
+
+.input:focus:-ms-input-placeholder {
+    font-size: 0.875rem;
+    color: #CCD3D3;
+}
+
+.input-label {
+    color: #697675;
+    pointer-events: none;
+    position: absolute;
+    left: 3rem;
+    top: 0.80rem;
+}
+
+.input-label-active {
+    display: none;
+}
+
+.input-label-disabled {
+    color: #E6EAE9;
+}

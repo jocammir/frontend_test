@@ -1,41 +1,43 @@
-import { h } from 'preact';
-import style from './style.css';
+import { h } from "preact";
+import { useState } from "preact/hooks";
+import { route } from "preact-router";
+import { Container, Grid2 } from "@mui/material";
+import { filterProducts } from "../../utils/filterProducts";
+import { EMPTY_STRING, GRID_SIZES } from "../../utils/constants";
+import ProductListItem from "../../components/products/list-item";
+import SearchField from "../../components/search-field";
+
+import { PRODUCTS } from "../../../tests/products"; //TODO: delete mock data
+import style from "./style.css";
 
 const Home = () => {
-	return (
-		<div class={style.home}>
-			<a href="https://preactjs.com">
-				<img src="../../assets/logo.svg" alt="Preact Logo" height="160" width="160" />
-			</a>
-			<h1>Get Started Building PWAs with Preact-CLI</h1>
-			<section>
-				<Resource
-					title="Learn Preact"
-					description="If you're new to Preact, try the interactive tutorial to learn important concepts"
-					link="https://preactjs.com/tutorial/"
-				/>
-				<Resource
-					title="Differences to React"
-					description="If you're coming from React, check out our docs for where Preact differs"
-					link="https://preactjs.com/guide/v10/differences-to-react"
-				/>
-				<Resource
-					title="Learn Preact-CLI"
-					description="To learn more about Preact-CLI, read through the ReadMe & Wiki"
-					link="https://github.com/preactjs/preact-cli#preact-cli--"
-				/>
-			</section>
-		</div>
-	);
-};
+  const [searchTerm, setSearchTerm] = useState(EMPTY_STRING);
+  const filteredItems = filterProducts(PRODUCTS, searchTerm);
 
-const Resource = props => {
-	return (
-		<a href={props.link} class={style.resource}>
-			<h2>{props.title}</h2>
-			<p>{props.description}</p>
-		</a>
-	);
+  const handleCardClick = (id) => {
+    route(`/details/${id}`);
+  };
+
+  return (
+    <Container component="section" className={style.home}>
+      <Grid2 container spacing={2} justifyContent="flex-end">
+        <Grid2 item size={GRID_SIZES}>
+          <SearchField
+            id="main-search"
+            label="Search"
+            onChange={(event) => setSearchTerm(event.target.value)}
+          />
+        </Grid2>
+      </Grid2>
+      <Grid2 container spacing={2}>
+        {filteredItems.map((item) => (
+          <Grid2 key={item.id} item size={GRID_SIZES}>
+            <ProductListItem onClick={handleCardClick} {...item} />
+          </Grid2>
+        ))}
+      </Grid2>
+    </Container>
+  );
 };
 
 export default Home;
