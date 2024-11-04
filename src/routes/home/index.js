@@ -16,6 +16,7 @@ import SearchField from "../../components/search-field";
 import Loading from "../../components/loading";
 
 import style from "./style.css";
+import EmptyState from "../../components/empty-state";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -47,11 +48,20 @@ const Home = () => {
         </Grid2>
       </Grid2>
       <Grid2 container spacing={2}>
-        {filteredItems.map((item) => (
-          <Grid2 key={item.id} item size={GRID_SIZES}>
-            <ProductListItem onClick={handleCardClick} {...item} />
+        {filteredItems.length ? (
+          filteredItems.map((item) => (
+            <Grid2 key={item.id} item size={GRID_SIZES}>
+              <ProductListItem onClick={handleCardClick} {...item} />
+            </Grid2>
+          ))
+        ) : (
+          <Grid2 item size={12}>
+            <EmptyState
+              title="No Products Found"
+              description="It seems there are no products to display at the moment. Please check back later or adjust your filters."
+            />
           </Grid2>
-        ))}
+        )}
       </Grid2>
     </Container>
   );
