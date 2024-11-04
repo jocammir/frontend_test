@@ -1,7 +1,7 @@
-import { API_URL } from "../api";
 import { getItem } from "../../storage";
 import { NAME_SLICE_CART } from "../../slices/cart";
 import { ActionsSliceToast } from "../../slices/toast";
+import { API_URL } from "../api";
 
 export const updateCart = async (productData, { dispatch }) => {
   const response = await fetch(`${API_URL}/cart`, {

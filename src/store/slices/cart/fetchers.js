@@ -1,6 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { NAME_SLICE_CART } from "./namespace";
+
 import { updateCart } from "../../api/cart";
+import { NAME_SLICE_CART } from "./namespace";
 
 const addCart = createAsyncThunk(`${NAME_SLICE_CART}/addCart`, updateCart);
 

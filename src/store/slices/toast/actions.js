@@ -1,4 +1,5 @@
 import { createAction } from "@reduxjs/toolkit";
+
 import { NAME_SLICE_TOAST } from "./namespace";
 
 export const ActionsSliceToast = {

@@ -27,7 +27,7 @@ const Header = ({ cartCount, routeProps }) => (
             width="32"
             loading="lazy"
           />
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+          <Typography variant="h6" component="h1" sx={{ flexGrow: 1 }}>
             Mobi Store
           </Typography>
         </Box>

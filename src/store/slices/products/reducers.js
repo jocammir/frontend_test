@@ -1,7 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { INITIAL_STATE, NAME_SLICE_PRODUCTS } from "./namespace";
+
 import { ActionsSliceProducts } from "./actions";
 import { FetchersSliceProducts } from "./fetchers";
+import { INITIAL_STATE, NAME_SLICE_PRODUCTS } from "./namespace";
 
 const ReducerSliceProducts = createSlice({
   name: NAME_SLICE_PRODUCTS,

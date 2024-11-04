@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+
 import { INITIAL_STATE, NAME_SLICE_TOAST } from "./namespace";
 import { ActionsSliceToast } from "./actions";
 

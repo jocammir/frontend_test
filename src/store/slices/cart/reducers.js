@@ -1,8 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
+
+import { setItem } from "../../storage";
 import { INITIAL_STATE, NAME_SLICE_CART } from "./namespace";
 import { ActionsSliceCart } from "./actions";
 import { FetchersSliceCart } from "./fetchers";
-import { setItem } from "../../storage";
 
 const ReducerSliceCart = createSlice({
   name: NAME_SLICE_CART,

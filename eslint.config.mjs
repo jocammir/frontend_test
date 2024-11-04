@@ -10,10 +10,14 @@ export default [
 
   {
     languageOptions: {
-      globals: globals.browser,
+      globals: {
+        ...globals.browser,
+        ...globals.node,
+      },
       ecmaVersion: "latest",
       sourceType: "module",
     },
+    files: ["**/*.jsx", "**/*.js"],
     plugins: {
       react: pluginReact,
       import: pluginImport,
@@ -32,12 +36,12 @@ export default [
       "preact/prop-types": "off",
       "no-unused-vars": "warn",
       "object-curly-spacing": ["error", "always"],
-      "indent": [
+      indent: [
         "warn",
         2,
         {
-          "SwitchCase": 1,
-          "flatTernaryExpressions": false,
+          SwitchCase: 1,
+          flatTernaryExpressions: false,
         },
       ],
       "no-magic-numbers": "off",
@@ -46,14 +50,14 @@ export default [
         { allowShortCircuit: true, allowTernary: true },
       ],
       "no-undef": "error",
-      "semi": ["error", "always"],
+      semi: ["error", "always"],
       "comma-dangle": ["error", "always-multiline"],
       "brace-style": ["error", "stroustrup"],
       "arrow-parens": ["error", "always"],
       "linebreak-style": ["error", "unix"],
       "jsx-quotes": ["error", "prefer-double"],
       "no-trailing-spaces": "error",
-      "quotes": ["error", "double", { allowTemplateLiterals: true }],
+      quotes: ["error", "double", { allowTemplateLiterals: true }],
       "import/order": [
         "error",
         {
