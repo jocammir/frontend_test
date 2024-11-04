@@ -1,6 +1,7 @@
-import { configure } from 'enzyme';
-import Adapter from 'enzyme-adapter-preact-pure';
 
-configure({
-	adapter: new Adapter(),
-});
+import { TextEncoder, TextDecoder } from 'util';
+const { ReadableStream } = require('stream/web');
+
+global.TextEncoder = TextEncoder;
+global.TextDecoder = TextDecoder;
+global.ReadableStream = ReadableStream;

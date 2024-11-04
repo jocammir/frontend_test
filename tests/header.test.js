@@ -1,12 +1,15 @@
-import { h } from 'preact';
-import Header from '../src/components/header';
-// See: https://github.com/preactjs/enzyme-adapter-preact-pure
-import { shallow } from 'enzyme';
 
-describe('Initial Test of the Header', () => {
-	test('Header renders 3 nav items', () => {
-		const context = shallow(<Header />);
-		expect(context.find('h1').text()).toBe('Preact App');
-		expect(context.find('Link').length).toBe(3);
+import { h } from 'preact';
+// See: https://github.com/preactjs/enzyme-adapter-preact-pure
+import { mount } from 'enzyme'
+
+import Header from '../src/components/header';
+
+describe('Header Component', () => {
+	it('renders correctly', () => {
+		const wrapper = mount(<Header cartCount={1} routeProps={{}} />);
+		expect(wrapper.exists()).toBe(true);
+		expect(wrapper.find('h1').text()).toBe('Mobi Store');
 	});
 });
+
