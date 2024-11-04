@@ -5,6 +5,7 @@ This repository contains a simple online store built using Preact.
 ## Screenshots
 
 ![Mobi Store Screenshot](./src/assets/app.png)
+![Mobi Store Product Details Screenshot](./src/assets/details.png)
 
 ## Features
 
