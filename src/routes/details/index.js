@@ -29,7 +29,7 @@ const Details = ({ id }) => {
       storageCode: product.storages,
     };
     dispatch(ActionsSliceCart.setCartParams(params));
-    dispatch(FetchersSliceCart.getCart(params));
+    dispatch(FetchersSliceCart.addCart(params));
     route("/");
   };
 

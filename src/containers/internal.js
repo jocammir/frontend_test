@@ -1,6 +1,6 @@
 import { h } from "preact";
 import { Router } from "preact-router";
-import { Box } from "@mui/material";
+import { Alert, Box, Snackbar } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "preact/hooks";
 import { FetchersSliceCart, SelectorSliceCart } from "../store/slices/cart";
@@ -10,6 +10,8 @@ import Header from "../components/header";
 import Home from "../routes/home";
 import Details from "../routes/details";
 import NotFound from "../routes/not-found";
+import { useToast } from "../hooks/useToast";
+import { SelectorSliceToast } from "../store/slices/toast";
 
 const ROUTES = [
   {
@@ -42,6 +44,10 @@ const InternalContainer = () => {
   const dispatch = useDispatch();
   const [routeProps, setRouteProps] = useState({});
   const cartCount = useSelector(SelectorSliceCart.cartCount);
+  const toastDuration = useSelector(SelectorSliceToast.autoHideDuration);
+  const horizontal = useSelector(SelectorSliceToast.horizontal);
+  const vertical = useSelector(SelectorSliceToast.vertical);
+  const { open, message, severity, onCloseToast } = useToast();
 
   const handleRouteChange = ({ current }) => {
     setRouteProps(current?.props);
@@ -52,7 +58,7 @@ const InternalContainer = () => {
     const cartParams = revalidationCart();
 
     if (cartParams) {
-      dispatch(FetchersSliceCart.getCart(cartParams));
+      dispatch(FetchersSliceCart.addCart(cartParams));
     }
   }, [dispatch]);
 
@@ -66,6 +72,16 @@ const InternalContainer = () => {
           ))}
         </Router>
       </Box>
+      <Snackbar
+        open={open}
+        autoHideDuration={toastDuration}
+        anchorOrigin={{ vertical, horizontal }}
+        onClose={onCloseToast}
+      >
+        <Alert onClose={onCloseToast} severity={severity} variant="filled">
+          {message}
+        </Alert>
+      </Snackbar>
     </>
   );
 };

@@ -14,16 +14,16 @@ const ReducerSliceCart = createSlice({
       .addCase(ActionsSliceCart.setCartParams, (state, action) => {
         state.cartParams = action.payload;
       })
-      .addCase(FetchersSliceCart.getCart.pending, (state) => {
+      .addCase(FetchersSliceCart.addCart.pending, (state) => {
         state.loading = true;
       })
-      .addCase(FetchersSliceCart.getCart.fulfilled, (state, action) => {
+      .addCase(FetchersSliceCart.addCart.fulfilled, (state, action) => {
         state.loading = false;
         state.cart = action.payload;
         state.lastFetched = Date.now();
         setItem(NAME_SLICE_CART, state);
       })
-      .addCase(FetchersSliceCart.getCart.rejected, (state) => {
+      .addCase(FetchersSliceCart.addCart.rejected, (state) => {
         state.loading = false;
         state.cart = {};
       });
