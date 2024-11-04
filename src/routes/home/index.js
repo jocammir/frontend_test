@@ -13,12 +13,14 @@ import { EMPTY_STRING, GRID_SIZES } from "../../utils/constants";
 
 import ProductListItem from "../../components/products/list-item";
 import SearchField from "../../components/search-field";
+import Loading from "../../components/loading";
 
 import style from "./style.css";
 
 const Home = () => {
   const dispatch = useDispatch();
   const productList = useSelector(SelectorSliceProducts.productList);
+  const loading = useSelector(SelectorSliceProducts.loading);
   const [searchTerm, setSearchTerm] = useState(EMPTY_STRING);
   const filteredItems = filterProducts(productList, searchTerm);
 
@@ -30,6 +32,8 @@ const Home = () => {
   useEffect(() => {
     dispatch(FetchersSliceProducts.getProductList());
   }, [dispatch]);
+
+  if (loading) return <Loading />;
 
   return (
     <Container component="section" className={style.home}>

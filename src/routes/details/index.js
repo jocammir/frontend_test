@@ -13,10 +13,12 @@ import { Container, Divider, Grid2, Typography } from "@mui/material";
 import ProductDetailImage from "../../components/products/detail-image";
 import ProductDetailDescription from "../../components/products/detail-description";
 import ProductDetailActions from "../../components/products/detail-actions";
+import Loading from "../../components/loading";
 
 const Details = ({ id }) => {
   const dispatch = useDispatch();
   const product = useSelector(SelectorSliceProducts.productDetails);
+  const loading = useSelector(SelectorSliceProducts.loading);
 
   const handleAddToCart = (product) => {
     if (!id || !product) return;
@@ -43,6 +45,8 @@ const Details = ({ id }) => {
       dispatch(ActionsSliceProducts.cleanProductDetails());
     };
   }, [dispatch]);
+
+  if (loading) return <Loading />;
 
   return (
     <Container component="section">

@@ -31,7 +31,7 @@ a {
 	display: flex;
 	padding-top: 9rem;
 	margin: 0 auto;
-	min-height: calc(100vh - 6rem);
+	min-height: calc(100vh - 10rem);
 	max-width: 1280px;
 }
 
